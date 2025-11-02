@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<style>
+
+  h2 {
+    margin-bottom: 30px;
+  }
+
+  .iklan-box {
+    position: relative;
+    display: inline-block;
+    width: 320px;
+    height: 180px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .iklan-box:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 25px rgba(255, 200, 50, 0.8);
+  }
+
+  .iklan-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .iklan-text {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .fade {
+    animation: fadeIn 0.8s ease-in-out;
+  }
+</style>
+</head>
+<body>
+
+<h2></h2>
+<a id="iklan-link" href="#" target="_blank" class="iklan-box">
+  <img id="iklan-img" src="" alt="Iklan">
+  <div class="iklan-text" id="iklan-text">Memuat iklan...</div>
+</a>
+
+<script>
+  // Daftar gambar iklan
+  const iklanData = [
+    {
+      img: "https://i.postimg.cc/Cx0qDSSD/Screenshot-10.png",
+      text: "",
+      url: "https://foto.kompas.com/photo/read/2018/05/21/1526874787d99/Kemeriahan-Pekan-Gawai-Dayak-2018-di-Pontianak"
+    },
+    {
+      img: "https://i.postimg.cc/cHtH2bdC/Screenshot-12.png",
+      text: "",
+      url: "https://youtu.be/BGsDt6fg5Gc?si=vyLO0kPWljJqwTat"
+    },
+    {
+      img: "https://i.postimg.cc/ZKsqYm06/Screenshot-15.png",
+      text: "",
+      url: "https://sekadaukab.go.id/berita/pemkab-sekadau-gelar-fgd-penyelenggaraan-perizinan-berusaha"
+    },
+    {
+      img: "https://i.postimg.cc/QtdPd2F1/Screenshot-16.png",
+      text: "",
+      url: "https://sekadaukab.go.id/berita/sekadau-jadi-kabupaten-pertama-sebagai-kabupaten-odf-tingkat-provinsi-kalbar"
+    }
+  ];
+
+  let index = 0;
+  const imgElement = document.getElementById("iklan-img");
+  const textElement = document.getElementById("iklan-text");
+  const linkElement = document.getElementById("iklan-link");
+
+  function tampilkanIklan() {
+    const iklan = iklanData[index];
+    imgElement.src = iklan.img;
+    textElement.textContent = iklan.text;
+    linkElement.href = iklan.url;
+
+    // Efek animasi
+    imgElement.classList.remove("fade");
+    void imgElement.offsetWidth; // restart animasi
+    imgElement.classList.add("fade");
+
+    index = (index + 1) % iklanData.length;
+  }
+
+  tampilkanIklan();
+  setInterval(tampilkanIklan, 4000); // ganti tiap 4 detik
+</script>
+
+</body>
+</html>

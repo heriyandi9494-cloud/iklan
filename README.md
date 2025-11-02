@@ -1,2 +1,0 @@
-# iklan
-iklan pertunjukan
